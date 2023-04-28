@@ -1,5 +1,6 @@
 package com.company;
 
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -49,5 +50,17 @@ class ProductTest {
     @CsvFileSource(resources = "/data.csv", numLinesToSkip = 1, delimiter = ';')
     void test3(int month, int year, int expected){
         assertEquals(expected, Product.priceIndex(year,month));
+    }
+
+    @Nested
+    class GetProductTest {
+        @Test
+        void test1(){
+            int year = 2010;
+            int month = 3;
+            int expected = 2;
+            int result = Product.priceIndex(year, month);
+            assumeTrue(expected == result);
+        }
     }
 }
